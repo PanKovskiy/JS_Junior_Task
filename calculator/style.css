@@ -40,3 +40,7 @@
 .operations, .equals {
   background-color: dimgray;
 }
+
+input[type="text"] {
+   text-align: right;
+}
