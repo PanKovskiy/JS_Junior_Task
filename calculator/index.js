@@ -41,11 +41,13 @@
             for (var i = 0; i < arrayMemory.length; i++) {
                 selectMemory.prepend(`<option value=${i}>${arrayMemory[i]}</option>`);
             }
-            selectMemory.
+            selectMemory.change(function () {
+               var str ='';
+               jQuery('option:selected').each(function () {
+                   str=jQuery(this).text();
+               });
+               jQuery('input[type="text"]').prop('value', str);
+            }).trigger('change');
         });
-
-    jQuery('.container').on('change','div.memory select option', function () {
-        textarea.prop('value', jQuery('select').find('option:selected').text());
-    });
 
 })();
