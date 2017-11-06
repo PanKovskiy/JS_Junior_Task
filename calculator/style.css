@@ -2,14 +2,14 @@
     display: flex;
     flex-direction: column;
     width: 150px;
-    height: 200px;
+    height: auto;
     margin: 0 auto;
     border: 2px solid grey;
     background-color: lightgray;
 }
 
-.btn {
-    border: 1px solid grey;
+.btn, .btn-equals, .btn-operations {
+
     margin: 0 3px;
 }
 
@@ -33,14 +33,20 @@
     margin: 5px 0;
 }
 
-.equals {
+.btn-equals, .btn-memory {
     flex-grow: 2;
 }
 
-.operations, .equals {
+.btn-operations, .btn-equals {
   background-color: dimgray;
 }
 
 input[type="text"] {
    text-align: right;
+}
+
+.memory {
+    display: flex;
+    justify-content: center;
+    margin: 5px 5px;
 }
