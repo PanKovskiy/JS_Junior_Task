@@ -31,23 +31,27 @@
        count++;
        }
        textarea.prop('value', result);
-       arrayMemory.unshift(result);
+       if (result != 0) {
+           addResultToMemory(result);
+       }
     });
-    var buttonMemory = jQuery('.btn-memory');
-        buttonMemory.on('click', function () {
-            buttonMemory.css('display', 'none');
-            jQuery('.container').append("<div class ='memory'><select name='memorySelect' ></select></div>");
-            var selectMemory= jQuery('select');
-            for (var i = 0; i < arrayMemory.length; i++) {
-                selectMemory.prepend(`<option value=${i}>${arrayMemory[i]}</option>`);
-            }
-            selectMemory.change(function () {
-               var str ='';
-               jQuery('option:selected').each(function () {
-                   str=jQuery(this).text();
-               });
-               jQuery('input[type="text"]').prop('value', str);
-            }).trigger('change');
+    function addResultToMemory (value) {
+        if (jQuery('#selectMemory').children().length >= 10) {
+            jQuery('#selectMemory').children().last().remove();
+            jQuery('#selectMemory').prepend(`<option value=${value}>${value}</option>`);
+        } else {
+            jQuery('#selectMemory').prepend(`<option value=${value}>${value}</option>`);
+        }
+    }
+    var selectMemory = jQuery('#selectMemory');
+
+    selectMemory.change(function () {
+        var str ='';
+        jQuery('option:selected').each(function () {
+            str=jQuery(this).text();
         });
+        jQuery('input[type="text"]').prop('value', str);
+    }).trigger('change');
+
 
 })();
