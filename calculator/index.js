@@ -47,10 +47,9 @@
     function addResultToMemory (value) {
         if (jQuery('#selectMemory').children().length >= 10) {
             jQuery('#selectMemory').children().last().remove();
-            jQuery('#selectMemory').prepend(`<option value=${value} selected>${value}</option>`);
-        } else {
-            jQuery('#selectMemory').prepend(`<option value=${value} selected>${value}</option>`);
         }
+        jQuery('#selectMemory').prepend(`<option value=${value} selected>${value}</option>`);
+
     }
     var selectMemory = jQuery('#selectMemory');
 
@@ -61,6 +60,5 @@
         });
         jQuery('input[type="text"]').prop('value', str);
     }).trigger('change');
-
 
 })();
