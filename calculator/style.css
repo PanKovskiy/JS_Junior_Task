@@ -8,10 +8,6 @@
     background-color: #DCDCDC;
 }
 
-.btn {
-    background-color: lightgray;
-}
-
 .btn, .btn-equals, .btn-operations {
 
     margin: 0 3px;
@@ -48,11 +44,16 @@
     flex-grow: 2;
 }
 
+.btn {
+    background-color: lightgray;
+}
+
 .btn-operations, .btn-equals {
   background-color: dimgray;
 }
 
 input[type="text"] {
+    background-color: lightyellow;
     text-align: right;
     width: 90%;
     margin: 5px auto;
@@ -69,10 +70,14 @@ input[type="button"] {
     border-radius: 7px;
 }
 
-select, select option {
+select {
     font-size: 15px;
     font-weight: 700;
     box-shadow: 2px 0px 8px grey inset;
+}
+
+select {
+    padding: 3px;
 }
 
 span {
