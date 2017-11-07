@@ -1,45 +1,58 @@
 (function () {
     var input = jQuery('.btn');
-    var textarea = jQuery('input[type="text"]');
+    var screen = jQuery('input[type="text"]');
     input.on('click', function () {
-        textarea.prop('value', textarea.prop('value') + jQuery(this).prop('value'));
+        if (screen.val() === '0') {
+            screen.prop('value', '');
+        }
+        screen.prop('value', screen.prop('value') + jQuery(this).prop('value'));
     });
     var buttonEquals = jQuery('.btn-equals');
-    buttonEquals.on('click', function test() {
-       var str = textarea.prop('value');
-       var arrayString = str.split(/(\*|\+|\-|\/)/);
+    buttonEquals.on('click', function () {
+       var arrFromScreen = screen.prop('value').split(/(\*|\+|\-|\/)/);
        var result = 0;
        var count = 0;
-       while (count < arrayString.length) {
-           if (arrayString.indexOf('*') != -1) {
-               count = arrayString.indexOf('*');
+       var indexMulty, indexDiviz;
+       while (count < arrFromScreen.length) {
+           indexMulty = arrFromScreen.indexOf('*');
+           indexDiviz = arrFromScreen.indexOf('/');
+           if (indexMulty > 0) {
+               if (indexDiviz > 0) {
+                   count=(indexMulty < indexDiviz)?indexMulty:indexDiviz;
+               } else {
+                   count=indexMulty;
+               }
+           } else {
+               if (indexDiviz > 0) {
+                   count=indexDiviz;
+               }
            }
-           switch (arrayString[count]) {
+           switch (arrFromScreen[count]) {
                case '+':
-                   result=Number(arrayString[count-1]) + Number(arrayString[count+1]);
-                   arrayString.splice(count-1, 3, result);
+                   result=Number(arrFromScreen[count-1]) + Number(arrFromScreen[count+1]);
+                   arrFromScreen.splice(count-1, 3, result);
                    count=0;
                    break;
                case '-':
-                   result=Number(arrayString[count-1]) - Number(arrayString[count+1]);
-                   arrayString.splice(count-1, 3, result);
+                   result=Number(arrFromScreen[count-1]) - Number(arrFromScreen[count+1]);
+                   arrFromScreen.splice(count-1, 3, result);
                    count=0;
 
                    break;
                case '*':
-                   result=Number(arrayString[count-1]) * Number(arrayString[count+1]);
-                   arrayString.splice(count-1, 3, result);
+                   result=Number(arrFromScreen[count-1]) * Number(arrFromScreen[count+1]);
+                   arrFromScreen.splice(count-1, 3, result);
                    count=0;
                    break;
                case '/':
-                   result=Number(arrayString[count-1]) / Number(arrayString[count+1]);
-                   arrayString.splice(count-1, 3, );
+                   result=Number(arrFromScreen[count-1]) / Number(arrFromScreen[count+1]);
+                   arrFromScreen.splice(count-1, 3, result);
                    count=0;
                    break;
            }
        count++;
        }
-       textarea.prop('value', result);
+       screen.prop('value', result);
        if (result != 0) {
            addResultToMemory(result);
        }
