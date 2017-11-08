@@ -2,18 +2,26 @@
     var input = jQuery('.btn');
     var screen = jQuery('input[type="text"]');
     input.on('click', function () {
+        //Fix add '0' when click button;
         if (screen.val() === '0') {
             screen.prop('value', '');
         }
+
+        //Add value button to screen input;
         screen.prop('value', screen.prop('value') + jQuery(this).prop('value'));
     });
+
+    //Event on button equals;
     var buttonEquals = jQuery('.btn-equals');
     buttonEquals.on('click', function () {
+       //Split string with separator 'operations';
        var arrFromScreen = screen.prop('value').split(/(\*|\+|\-|\/)/);
        var result = 0;
        var count = 0;
+       // For index element '*', '/';
        var indexMulty, indexDiviz;
        while (count < arrFromScreen.length) {
+           //First operation must be "*" or '/';
            indexMulty = arrFromScreen.indexOf('*');
            indexDiviz = arrFromScreen.indexOf('/');
            if (indexMulty > 0) {
@@ -27,6 +35,8 @@
                    count=indexDiviz;
                }
            }
+
+           //opeations;
            switch (arrFromScreen[count]) {
                case '+':
                    result=Number(arrFromScreen[count-1]) + Number(arrFromScreen[count+1]);
@@ -52,11 +62,15 @@
            }
        count++;
        }
+
+       //output to screen result operations;
        screen.prop('value', result);
        if (result != 0) {
            addResultToMemory(result);
        }
     });
+
+    //Memory save only 10 last results;
     function addResultToMemory (value) {
         if (jQuery('#selectMemory').children().length >= 10) {
             jQuery('#selectMemory').children().last().remove();
@@ -64,8 +78,9 @@
         jQuery('#selectMemory').prepend(`<option value=${value} selected>${value}</option>`);
 
     }
-    var selectMemory = jQuery('#selectMemory');
 
+    //Selected value put into screen;
+    var selectMemory = jQuery('#selectMemory');
     selectMemory.change(function () {
         var str ='';
         jQuery('option:selected').each(function () {
