@@ -72,10 +72,11 @@
 
     //Memory save only 10 last results;
     function addResultToMemory (value) {
-        if (jQuery('#selectMemory').children().length >= 10) {
-            jQuery('#selectMemory').children().last().remove();
+        var selectMemory = jQuery('#selectMemory');
+        if (selectMemory.children().length >= 10) {
+            selectMemory.children().last().remove();
         }
-        jQuery('#selectMemory').prepend(`<option value=${value} selected>${value}</option>`);
+        selectMemory.prepend(`<option value=${value} selected>${value}</option>`);
 
     }
 
