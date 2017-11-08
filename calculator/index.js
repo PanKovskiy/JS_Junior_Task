@@ -80,7 +80,7 @@
 
     }
 
-    //Selected value put into screen;
+    //event - Selected value put into screen;
     var selectMemory = jQuery('#selectMemory');
     selectMemory.change(function () {
         var str ='';
